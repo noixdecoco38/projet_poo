@@ -30,7 +30,7 @@ public class Projection extends StateLessrelationUnaire {
 			}
 		};
 
-		
+	
 	}
 
 }
