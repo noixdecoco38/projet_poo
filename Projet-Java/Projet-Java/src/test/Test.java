@@ -8,6 +8,7 @@ import BaseDeDonnee.SchemaC;
 import BaseDeDonnee.Tuple;
 import BaseDeDonnee.TypeString;
 import Operateur.Identite;
+import Operateur.Projection;
 
 public class Test {
 	public static void main(String[] args) {
@@ -28,6 +29,13 @@ public class Test {
 		}
 		
 		Relation r = new Identite(relation);
+		for(Tuple t : r){
+			for(Object o : t){
+				System.out.print(o+" ");
+			}
+			System.out.println();
+		}
+		Relation pr = new Projection (relation);
 		for(Tuple t : r){
 			for(Object o : t){
 				System.out.print(o+" ");

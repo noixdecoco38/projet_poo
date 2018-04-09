@@ -2,17 +2,21 @@ package Operateur;
 
 import java.util.Iterator;
 
+import BaseDeDonnee.Attribut;
 import BaseDeDonnee.Relation;
-import BaseDeDonnee.SchemaC;
 import BaseDeDonnee.Tuple;
 
 public class Projection extends StateLessrelationUnaire {
 	
 	private final int[] indexes;
-	protected Projection(String nom, SchemaC schema, Relation r) {
-		super(nom, schema, r);
-		indexes = new int[schema.degre()];
-		
+	public Projection(Relation r) {
+		super(r.nom(), r.schema(), r);
+		Attribut at;
+		indexes = new int[r.schema().degre()];
+		for (int i =0;i<indexes.length;i++) {
+			at =r.schema().getAttribute(i);
+			indexes[i] = r.schema().getOrdre(at);
+		}
 		
 	}
 
