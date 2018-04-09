@@ -21,4 +21,6 @@ public class Tuple implements Iterable<Object>{
 				@Override public Object next() {return valeurTuple[index++];}
 			};
 		}
+
+		public Object get(int i) {return valeurTuple[i];}
 }
