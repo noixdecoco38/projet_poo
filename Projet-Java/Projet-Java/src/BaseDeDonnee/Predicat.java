@@ -2,6 +2,6 @@ package BaseDeDonnee;
 
 public interface Predicat {
 
- boolean eval();
+ boolean eval(Tuple t);
 
 }

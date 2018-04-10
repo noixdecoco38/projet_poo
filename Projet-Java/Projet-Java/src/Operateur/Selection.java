@@ -1,17 +1,20 @@
 package Operateur;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import BaseDeDonnee.Predicat;
 import BaseDeDonnee.IntefaceRelation;
 import BaseDeDonnee.Tuple;
 
-public class Selection extends StateLessrelationUnaire implements Predicat{
+public class Selection extends StateLessrelationUnaire{
 
 	
-	
+	private final Predicat p;
 	private final int[] indexes;
 	public Selection( IntefaceRelation r, Predicat p) {
 		super(r.nom(), r.schema(), r);
+		this.p = p;
 		indexes = new int[r.schema().degre()];
 	}
 
@@ -19,24 +22,26 @@ public class Selection extends StateLessrelationUnaire implements Predicat{
 	public Iterator<Tuple> iterator() {
 	
 		return new Iterator<Tuple>() {
+			
+			private Tuple next;
+			private boolean hasNext=getNext();
 			private Iterator<Tuple>it = r.iterator();
 			@Override public boolean hasNext() {return it.hasNext();}
 
 			@Override public Tuple next() {
-				Tuple t = it.next();
-				Object[] temp = new Object[indexes.length];
-				for(int i = 0; i<indexes.length;i++) 
-					if (eval())
-						temp[i] = t.get(indexes[i]);
-				return new Tuple(temp);
+				if(!hasNext) throw new NoSuchElementException();
+				Tuple t = next;
+				hasNext =getNext();
+				return t;
 			}
+
+			private boolean getNext() {
+				boolean b=false;
+				while(it.hasNext() && !(b=p.eval(next = it.next())));
+				return b;
+			}	
 		};
 	}
 
-	@Override
-	public boolean eval() {
-		
-		return true;
-	}
 
 }
