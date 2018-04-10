@@ -3,16 +3,17 @@ package test;
 import BaseDeDonnee.Attribut;
 import BaseDeDonnee.FullInMemoryRelation;
 import BaseDeDonnee.ProprietesAttribut;
-import BaseDeDonnee.Relation;
-import BaseDeDonnee.SchemaC;
+import BaseDeDonnee.IntefaceRelation;
+import BaseDeDonnee.Schema;
 import BaseDeDonnee.Tuple;
 import BaseDeDonnee.TypeString;
 import Operateur.Identite;
 import Operateur.Projection;
+import Operateur.Selection;
 
 public class Test {
 	public static void main(String[] args) {
-		SchemaC sc = new SchemaC(
+		Schema sc = new Schema(
 				new Attribut("NOM", new TypeString(), ProprietesAttribut.Standard),
 				new Attribut("PRENOM", new TypeString(), ProprietesAttribut.Standard)
 		);
@@ -28,21 +29,28 @@ public class Test {
 			System.out.println();
 		}
 		
-		Relation r = new Identite(relation);
+		IntefaceRelation r = new Identite(relation);
 		for(Tuple t : r){
 			for(Object o : t){
 				System.out.print(o+" ");
 			}
 			System.out.println();
 		}
-		Relation pr = new Projection (relation);
-		for(Tuple t : r){
+		IntefaceRelation pr = new Projection (relation);
+		for(Tuple t : pr){
 			for(Object o : t){
 				System.out.print(o+" ");
 			}
 			System.out.println();
 		}
 		
+		IntefaceRelation sel = new Selection (relation,null);
+		for(Tuple t : sel){
+			for(Object o : sel){
+				System.out.print(o+" ");
+			}
+			System.out.println();
+		}
 	}
 
 }

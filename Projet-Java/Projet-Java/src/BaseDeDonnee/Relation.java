@@ -1,9 +1,18 @@
 package BaseDeDonnee;
 
-public interface Relation extends Iterable<Tuple>{
 
-	public String nom();
+public abstract class Relation implements IntefaceRelation {
 
-	public SchemaC schema();
+		private final String nomR;
+		private final Schema Schema;
+		
+		protected Relation(String nom, Schema schema) {
+			Schema = schema;
+			nomR=nom;
+		}
 
+		@Override public String nom() {return nomR;}
+
+		@Override public Schema schema() {return Schema;}
+	
 }

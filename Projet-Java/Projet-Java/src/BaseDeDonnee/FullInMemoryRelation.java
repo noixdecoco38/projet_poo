@@ -6,7 +6,7 @@ import java.util.Iterator;
 public class FullInMemoryRelation extends StateFull {
 	private final ArrayList<Tuple> tuples;
 
-	public FullInMemoryRelation(String nom, SchemaC schema) {
+	public FullInMemoryRelation(String nom, Schema schema) {
 		super(nom, schema);
 		tuples = new ArrayList<>();
 	}

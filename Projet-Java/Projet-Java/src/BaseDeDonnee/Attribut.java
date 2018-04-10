@@ -16,7 +16,7 @@ public class Attribut {
 	}
 	
 	/**
-	 * @return the nameAttribut
+	 * @return True if the attribute is primary key
 	 */
 	public Boolean getifPrimaryKey() {
 		return ifPrimaryKey;

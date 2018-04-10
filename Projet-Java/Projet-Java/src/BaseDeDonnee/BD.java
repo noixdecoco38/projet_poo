@@ -4,22 +4,22 @@ import java.util.ArrayList;
 
 public class BD {
 	
-	private ArrayList<RelationC> relations;
+	private ArrayList<Relation> relations;
 	
 	
 	
-	public BD(ArrayList<RelationC> relation  ) {
+	public BD(ArrayList<Relation> relation  ) {
 		
 		relations = relation;
 		
 	}
 	
-	private void addRelation(RelationC R) {
+	private void addRelation(Relation R) {
 		
 		relations.add(R);
 	}
 	
-	private void supRelation(RelationC R) {
+	private void supRelation(Relation R) {
 		if(!relations.contains(R)){
 			System.out.println("Cette relation n'hexiste pas dans la base de données");
 		}else{

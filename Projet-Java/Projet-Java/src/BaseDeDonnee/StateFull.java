@@ -1,8 +1,8 @@
 package BaseDeDonnee;
 
-public abstract class StateFull extends RelationC{
+public abstract class StateFull extends Relation{
 
-	protected StateFull(String nom, SchemaC schema) {super(nom, schema);}
+	protected StateFull(String nom, Schema schema) {super(nom, schema);}
 
 	public abstract void add(Tuple t);
 

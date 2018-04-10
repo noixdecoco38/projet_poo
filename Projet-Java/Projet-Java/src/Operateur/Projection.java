@@ -23,9 +23,9 @@ public class Projection extends StateLessrelationUnaire {
 	@Override
 	public Iterator<Tuple> iterator() {
 		return new Iterator<Tuple>() {
-			private Iterator<Tuple>it = r.iterator();
+			private Iterator<Tuple> it = r.iterator();
 			@Override public boolean hasNext() {return it.hasNext();}
-
+			
 			@Override public Tuple next() {
 				Tuple t = it.next();
 				Object[] temp = new Object[indexes.length];
@@ -33,8 +33,6 @@ public class Projection extends StateLessrelationUnaire {
 				return new Tuple(temp);
 			}
 		};
-
-	
 	}
 
 }

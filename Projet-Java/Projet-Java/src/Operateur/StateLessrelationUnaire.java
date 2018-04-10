@@ -1,12 +1,12 @@
 package Operateur;
 
+import BaseDeDonnee.IntefaceRelation;
 import BaseDeDonnee.Relation;
-import BaseDeDonnee.RelationC;
-import BaseDeDonnee.SchemaC;
+import BaseDeDonnee.Schema;
 
 public abstract class StateLessrelationUnaire extends StateLessRelation {
-	protected final Relation r;
-	protected StateLessrelationUnaire(String nom, SchemaC schema,Relation r) {
+	protected final IntefaceRelation r;
+	protected StateLessrelationUnaire(String nom, Schema schema,IntefaceRelation r) {
 		super(nom, schema);
 		this.r=r;
 	}

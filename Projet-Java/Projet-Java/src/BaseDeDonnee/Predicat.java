@@ -1,9 +1,7 @@
 package BaseDeDonnee;
 
-public class Predicat {
+public interface Predicat {
 
-	public Predicat() {
-	 
-	}
+ boolean eval();
 
 }
