@@ -36,7 +36,7 @@ public class Selection extends StateLessrelationUnaire implements Predicat{
 	@Override
 	public boolean eval() {
 		
-		return false;
+		return true;
 	}
 
 }

@@ -3,7 +3,7 @@ package test;
 import BaseDeDonnee.Attribut;
 import BaseDeDonnee.FullInMemoryRelation;
 import BaseDeDonnee.ProprietesAttribut;
-import BaseDeDonnee.IntefaceRelation;
+import BaseDeDonnee.Relation;
 import BaseDeDonnee.Schema;
 import BaseDeDonnee.Tuple;
 import BaseDeDonnee.TypeString;
@@ -29,14 +29,14 @@ public class Test {
 			System.out.println();
 		}
 		
-		IntefaceRelation r = new Identite(relation);
+		Relation r = new Identite(relation);
 		for(Tuple t : r){
 			for(Object o : t){
 				System.out.print(o+" ");
 			}
 			System.out.println();
 		}
-		IntefaceRelation pr = new Projection (relation);
+		Relation pr = new Projection (relation);
 		for(Tuple t : pr){
 			for(Object o : t){
 				System.out.print(o+" ");
@@ -44,9 +44,9 @@ public class Test {
 			System.out.println();
 		}
 		
-		IntefaceRelation sel = new Selection (relation,null);
+		Relation sel = new Selection (relation,null);
 		for(Tuple t : sel){
-			for(Object o : sel){
+			for(Object o : t){
 				System.out.print(o+" ");
 			}
 			System.out.println();

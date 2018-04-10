@@ -1,7 +1,6 @@
 package Operateur;
 
 import BaseDeDonnee.IntefaceRelation;
-import BaseDeDonnee.Relation;
 import BaseDeDonnee.Schema;
 
 public abstract class StateLessrelationUnaire extends StateLessRelation {
