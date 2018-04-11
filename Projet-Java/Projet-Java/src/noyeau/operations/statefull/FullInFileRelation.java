@@ -18,42 +18,50 @@ import noyeau.Relation;
 import noyeau.Tuple;
 import noyeau.Schema;
 
+
+/**********************************************************************************
+ * Classe FullInFileRelation:													  *
+ * Ajout de Tuples , Chargement de données , et autres utilitaires 				  *
+ * :herite de StateFull:								     		  *
+ **********************************************************************************/
 public class FullInFileRelation extends StateFull {
 	
+	private RandomAccessFile file_access;
 	private final Map<Key, Long> tuples;   
-	private RandomAccessFile f = null;
-	private byte [] b ;
+	private byte [] bites ;
 	
 	
-	public FullInFileRelation(String nom, Schema schema) { 
-		super(nom, schema); 
-		this.tuples = new HashMap<Key, Long>();
+	/*
+	 * Constructeur: entree nom / schema
+	 ******************************************************/
+	public FullInFileRelation(String file_name, Schema schema) {
+		super(file_name, schema);  // appel du constructeur Statefull
 		
-		this.b = new byte[tuples.size()];
-	
-		try {f = new RandomAccessFile(new File(nom+".tuples"), "rw");} 
+		this.tuples = new HashMap<Key, Long>(); //matrice Clé : Tuple
+		this.bites = new byte[tuples.size()];
+		
+		//Creation d'un fichier.bd qui contient les tuples and bd
+		try {file_access = new RandomAccessFile(new File(file_name +".bd"), "rw");} 
 		catch (FileNotFoundException e) {e.getMessage();}
+		//try_catch si la creation echoue
 	}
 
-	@Override
-	public int degre() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
+	/*
+	 * iterator() , Permet l'iteration Tuple
+	 ******************************************************/
 	@Override
 	public Iterator<Tuple> iterator() {
 		return new Iterator<Tuple>() {
+			
 			private Iterator <Long> it = tuples.values().iterator();
-			public boolean hasNext() {
-				return it.hasNext();
-			}
+			public boolean hasNext() {return it.hasNext();}
 
 			public Tuple next() {
 				 try {
-					f.seek(it.next());
-					f.read(b);
-					return new Tuple(b);
+					file_access.seek(it.next());
+					file_access.read(bites);
+					return new Tuple(bites);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -62,12 +70,16 @@ public class FullInFileRelation extends StateFull {
 		};
 	}
 
+	
+	/*
+	 * add(), 
+	 ******************************************************/
 	public void add(Long t) { 
 		Key key = new Key(Integer.toString(tuples.size()).getBytes());
 		 try {
-			f.seek(f.length());
-			this.tuples.put(key, f.length());
-			f.write(t.toString().getBytes());
+			file_access.seek(file_access.length());
+			this.tuples.put(key, file_access.length());
+			file_access.write(t.toString().getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
@@ -77,23 +89,23 @@ public class FullInFileRelation extends StateFull {
 		Key key = new Key(Integer.toString(tuples.size()).getBytes());
 		 try {
 			 
-			f.seek(f.length());
-			this.tuples.put(key, f.length());
-			return new Long(f.read(t.toString().getBytes()));
+			file_access.seek(file_access.length());
+			this.tuples.put(key, file_access.length());
+			return new Long(file_access.read(t.toString().getBytes()));
 			
 		} catch (IOException e) {e.printStackTrace();}
 		return null;	
 	}
 	
-	/**
-	 * charge une liste de points cartesiens en format Objet
-	 * @param File le fichier Ã  charger
-	 */
+	
+	/*
+	 * chargreFormatObjet(),
+	 ******************************************************/
 	public Relation chargerFormatObjet(File f) {
 		Relation r = null;
 		try {		
-			this.f = new RandomAccessFile(f, "rw");
-			getinFile(new Long(this.f.read(b)));
+			this.file_access = new RandomAccessFile(f, "rw");
+			getinFile(new Long(this.file_access.read(bites)));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -103,16 +115,20 @@ public class FullInFileRelation extends StateFull {
 		 
 	}
 
-
+	/*
+	 * add() , utilisation du parseur de la classe Integer
+	 ******************************************************/
 	public void add(Tuple t, Key c) throws IOException {
-		long offset = f.length();
-		f.seek(offset);
-		t.serialize(f, t);
+		long offset = file_access.length();
+		file_access.seek(offset);
+		t.serialize(file_access, t);
 		this.tuples.put(c, offset);}
 
+	/*
+	 * add() , utilisation du parseur de la classe Integer
+	 ******************************************************/
 	@Override
 	public void add(Tuple t) {
-		// TODO Auto-generated method stub
 		
 	}
 

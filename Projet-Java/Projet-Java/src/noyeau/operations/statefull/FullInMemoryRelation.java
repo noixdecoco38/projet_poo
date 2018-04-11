@@ -25,7 +25,7 @@ public class FullInMemoryRelation extends StateFull {
 
 	@Override
 	public void add(Tuple t) {
-		// TODO Auto-generated method stub
+		tuples.add(t);
 		
 	}
 
