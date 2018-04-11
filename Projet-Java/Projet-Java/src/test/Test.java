@@ -36,7 +36,11 @@ public class Test {
 			}
 			System.out.println();
 		}
-		Relation pr = new Projection (relation);
+		
+		Schema sc1 = new Schema(
+				new Attribut("NOM", new TypeString(), ProprietesAttribut.Standard)
+		);
+		Relation pr = new Projection (relation,sc1);
 		for(Tuple t : pr){
 			for(Object o : t){
 				System.out.print(o+" ");
@@ -44,13 +48,13 @@ public class Test {
 			System.out.println();
 		}
 		
-		Relation sel = new Selection (relation,null);
+	/*	Relation sel = new Selection (relation,null);
 		for(Tuple t : sel){
 			for(Object o : t){
 				System.out.print(o+" ");
 			}
 			System.out.println();
-		}
+		}*/
 	}
 
 }

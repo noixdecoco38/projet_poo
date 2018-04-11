@@ -5,17 +5,17 @@ import java.util.Iterator;
 import noyeau.Attribut;
 import noyeau.Relation;
 import noyeau.Tuple;
-
+import noyeau.Schema;
 public class Projection extends StateLessrelationUnaire {
 	
 	private final int[] indexes;
-	public Projection(Relation r) {
-		super(r.nom(), r.schema(), r);
+	public Projection(Relation r,Schema sc) {
+		super(r.nom(), sc, r);
 		Attribut at;
-		indexes = new int[r.schema().degre()];
+		indexes = new int[sc.degre()];
 		for (int i =0;i<indexes.length;i++) {
-			at =r.schema().getAttribute(i);
-			indexes[i] = r.schema().getOrdre(at);
+			at =sc.getAttribute(i);
+			indexes[i] = sc.getOrdre(at);
 		}
 		
 	}
