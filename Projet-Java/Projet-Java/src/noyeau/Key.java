@@ -4,11 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import noyeau.types.TypeAttribut;
 
-/********************
- * 
- * Key : Class permettant d'expliciter la clées dans la base de donnes
- *	Methode principale :,dkl,dld
- */
 
 public class Key implements Comparable<Key> {
 
@@ -61,6 +56,7 @@ public class Key implements Comparable<Key> {
 	public int hashCode() {
 		return key.hashCode();
 	}
+
 
 
 }
