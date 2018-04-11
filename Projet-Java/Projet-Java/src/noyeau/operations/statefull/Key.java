@@ -1,4 +1,4 @@
-package noyeau;
+package noyeau.operations.statefull;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

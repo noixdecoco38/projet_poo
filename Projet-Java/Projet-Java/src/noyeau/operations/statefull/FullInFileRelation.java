@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import noyeau.Key;
 import noyeau.Relation;
 import noyeau.Tuple;
 import noyeau.Schema;

@@ -1,8 +1,7 @@
 package noyeau.operations.statefull;
 
-import java.io.IOException;
 
-import noyeau.Key;
+
 import noyeau.Relation;
 import noyeau.Schema;
 import noyeau.Tuple;
