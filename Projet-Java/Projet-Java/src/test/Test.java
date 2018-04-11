@@ -1,11 +1,11 @@
 package test;
 
 import noyeau.Attribut;
-import noyeau.FullInMemoryRelation;
 import noyeau.ProprietesAttribut;
 import noyeau.Relation;
 import noyeau.Schema;
 import noyeau.Tuple;
+import noyeau.operations.statefull.FullInMemoryRelation;
 import noyeau.operations.stateless.Identite;
 import noyeau.operations.stateless.Projection;
 import noyeau.operations.stateless.Selection;
@@ -36,7 +36,10 @@ public class Test {
 			}
 			System.out.println();
 		}
-		Relation pr = new Projection (relation);
+		Schema sc1 = new Schema(
+				new Attribut("NOM", new TypeString(), ProprietesAttribut.Standard)
+		);
+		Relation pr = new Projection (relation,sc1);
 		for(Tuple t : pr){
 			for(Object o : t){
 				System.out.print(o+" ");
