@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import noyeau.IntefaceRelation;
 import noyeau.InterfacePredicat;
+import noyeau.Relation;
 import noyeau.Tuple;
 
 public class Selection extends StateLessrelationUnaire{
@@ -12,7 +13,7 @@ public class Selection extends StateLessrelationUnaire{
 	
 	private final InterfacePredicat p;
 	private final int[] indexes;
-	public Selection( IntefaceRelation r, InterfacePredicat p) {
+	public Selection( Relation r, InterfacePredicat p) {
 		super(r.nom(), r.schema(), r);
 		this.p = p;
 		indexes = new int[r.schema().degre()];

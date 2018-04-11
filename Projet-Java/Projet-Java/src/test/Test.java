@@ -1,11 +1,11 @@
 package test;
 
 import noyeau.Attribut;
-import noyeau.FullInMemoryRelation;
 import noyeau.ProprietesAttribut;
 import noyeau.Relation;
 import noyeau.Schema;
 import noyeau.Tuple;
+import noyeau.operations.statefull.FullInMemoryRelation;
 import noyeau.operations.stateless.Identite;
 import noyeau.operations.stateless.Projection;
 import noyeau.operations.stateless.Selection;

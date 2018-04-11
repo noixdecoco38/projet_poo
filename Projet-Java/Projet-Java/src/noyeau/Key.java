@@ -2,7 +2,7 @@ package noyeau;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import noyeau.types.Type;
+import noyeau.types.TypeAttribut;
 
 
 public class Key implements Comparable<Key> {
@@ -10,7 +10,7 @@ public class Key implements Comparable<Key> {
 	private byte[] key;
 
 	
-	public Key(Type<?> type, Object key) throws IOException {
+	public Key(TypeAttribut<?> type, Object key) throws IOException {
 		this.key = new byte[type.size()];
 		type.unserialize(new ByteArrayInputStream(key.toString().getBytes()));
 	}

@@ -2,12 +2,12 @@ package noyeau.operations.stateless;
 
 import java.util.Iterator;
 
-import noyeau.IntefaceRelation;
+import noyeau.Relation;
 import noyeau.Tuple;
 
 public class Identite extends StateLessrelationUnaire {
 
-	public Identite(IntefaceRelation r) {
+	public Identite(Relation r) {
 		super("identite("+r.nom()+")", r.schema(), r);
 		// TODO Auto-generated constructor stub
 	}

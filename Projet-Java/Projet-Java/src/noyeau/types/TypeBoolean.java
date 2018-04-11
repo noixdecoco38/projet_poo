@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class TypeBoolean extends Type<Boolean> {
+public class TypeBoolean extends TypeAttribut<Boolean> {
 	public static final TypeBoolean type = new TypeBoolean();
 
-	public TypeBoolean() {
-	}
+	public TypeBoolean() {}
 
 	@Override
 	public Boolean parse(String is) throws IOException {

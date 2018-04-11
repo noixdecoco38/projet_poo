@@ -1,15 +1,17 @@
 package noyeau;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Iterator;
+
+
 
 public class Tuple implements Iterable<Object>{
 
 		private Object[] valeurTuple;
 		
 		public Tuple(Object... valeur) {
-			
 			valeurTuple=valeur;
-			
 		}
 
 		@Override
@@ -23,4 +25,13 @@ public class Tuple implements Iterable<Object>{
 		}
 
 		public Object get(int i) {return valeurTuple[i];}
+		
+		
+		public void serialize(RandomAccessFile os, Integer data) throws IOException {
+			os.write(data.toString().getBytes());		
+		}
+
+		public void serialize(RandomAccessFile os, Tuple data) throws IOException {
+				for (Object o : data)os.write(data.toString().getBytes());	
+		}
 }

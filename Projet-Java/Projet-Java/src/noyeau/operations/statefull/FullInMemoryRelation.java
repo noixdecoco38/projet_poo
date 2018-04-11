@@ -1,9 +1,10 @@
-package noyeau;
+package noyeau.operations.statefull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import noyeau.operations.statefull.StateFull;
+import noyeau.Schema;
+import noyeau.Tuple;
 
 public class FullInMemoryRelation extends StateFull {
 	private final ArrayList<Tuple> tuples;
@@ -22,8 +23,12 @@ public class FullInMemoryRelation extends StateFull {
 		};
 	}
 
-	@Override public void add(Tuple t) {
-		tuples.add(t);
+	@Override
+	public void add(Tuple t) {
+		// TODO Auto-generated method stub
+		
 	}
+
+
 
 }
