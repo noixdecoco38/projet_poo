@@ -1,15 +1,15 @@
 package test;
 
-import BaseDeDonnee.Attribut;
-import BaseDeDonnee.FullInMemoryRelation;
-import BaseDeDonnee.ProprietesAttribut;
-import BaseDeDonnee.Relation;
-import BaseDeDonnee.Schema;
-import BaseDeDonnee.Tuple;
-import BaseDeDonnee.TypeString;
-import Operateur.Identite;
-import Operateur.Projection;
-import Operateur.Selection;
+import noyeau.Attribut;
+import noyeau.FullInMemoryRelation;
+import noyeau.ProprietesAttribut;
+import noyeau.Relation;
+import noyeau.Schema;
+import noyeau.Tuple;
+import noyeau.operations.stateless.Identite;
+import noyeau.operations.stateless.Projection;
+import noyeau.operations.stateless.Selection;
+import noyeau.types.TypeString;
 
 public class Test {
 	public static void main(String[] args) {
