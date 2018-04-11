@@ -34,6 +34,7 @@ public class FullInFileRelation extends StateFull {
 	/*
 	 * Constructeur: entree nom / schema
 	 ******************************************************/
+	
 	public FullInFileRelation(String file_name, Schema schema) {
 		super(file_name, schema);  // appel du constructeur Statefull
 		
@@ -48,7 +49,7 @@ public class FullInFileRelation extends StateFull {
 
 
 	/*
-	 * iterator() , Permet l'iteration Tuple
+	 * iterator<long> , Permet l'iteration Tuple
 	 ******************************************************/
 	@Override
 	public Iterator<Tuple> iterator() {
@@ -59,9 +60,9 @@ public class FullInFileRelation extends StateFull {
 
 			public Tuple next() {
 				 try {
-					file_access.seek(it.next());
-					file_access.read(bites);
-					return new Tuple(bites);
+					file_access.seek(it.next()); //recherche du Long t
+					file_access.read(bites); //lecture
+					return new Tuple(bites); 
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -72,34 +73,39 @@ public class FullInFileRelation extends StateFull {
 
 	
 	/*
-	 * add(), 
+	 * add(long t), ajout d'un tuple serialisé
 	 ******************************************************/
 	public void add(Long t) { 
-		Key key = new Key(Integer.toString(tuples.size()).getBytes());
+		//Key correspond a la taille - 1 indice 
+		Key key = new Key(Integer.toString(tuples.size()).getBytes()); 
 		 try {
-			file_access.seek(file_access.length());
-			this.tuples.put(key, file_access.length());
-			file_access.write(t.toString().getBytes());
+			//on ecrit le tuple serialize dans le fichier
+			file_access.seek(file_access.length()); // taille =  "index" en quelque sorte
+			this.tuples.put(key, file_access.length()); //affecter fil_acess.length to key
+			//ecriture du tuple serialize dans le fichier
+			file_access.write(t.toString().getBytes()); 
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); // catch d'erreur
 		}	
 	}
 	
+	/*
+	 * getInFile(long t), permet la lecture d'un tuple long du inFile
+	 ******************************************************************/
 	public Long getinFile(Long t) { 
 		Key key = new Key(Integer.toString(tuples.size()).getBytes());
 		 try {
-			 
-			file_access.seek(file_access.length());
-			this.tuples.put(key, file_access.length());
-			return new Long(file_access.read(t.toString().getBytes()));
-			
+			file_access.seek(file_access.length()); //recherche du dernier element
+			this.tuples.put(key, file_access.length()); //enregistre la cle 
+			return new Long(file_access.read(t.toString().getBytes())); //lecture
 		} catch (IOException e) {e.printStackTrace();}
 		return null;	
 	}
 	
 	
 	/*
-	 * chargreFormatObjet(),
+	 * chargerFormatObjet(), entree fichier 
+	 * 
 	 ******************************************************/
 	public Relation chargerFormatObjet(File f) {
 		Relation r = null;
@@ -116,20 +122,26 @@ public class FullInFileRelation extends StateFull {
 	}
 
 	/*
-	 * add() , utilisation du parseur de la classe Integer
+	 * add() , ajout d'un tuple , cle stockee
 	 ******************************************************/
-	public void add(Tuple t, Key c) throws IOException {
-		long offset = file_access.length();
-		file_access.seek(offset);
-		t.serialize(file_access, t);
-		this.tuples.put(c, offset);}
+	public void add(Tuple t, Key key) throws IOException {
+		file_access.seek(file_access.length());
+		long temp = file_access.length();
+		
+		t.serialize(file_access, t); //serialization
+		this.tuples.put(key, temp);}
 
 	/*
-	 * add() , utilisation du parseur de la classe Integer
+	 * add() , add d'un tuple + key generee
 	 ******************************************************/
 	@Override
 	public void add(Tuple t) {
-		
+		Key key = new Key(Integer.toString(tuples.size()).getBytes());
+		try {
+			add(t,key); // utilisation du ass avec key stockée
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
